@@ -16,7 +16,7 @@ public class PaymentProcessor {
     private final RegularPaymentService paymentService;
     private final PaymentTransactionService transactionService;
 
-    @Scheduled(fixedRate = 60000)
+    @Scheduled(fixedRate = 30000)
     public void startPaymentProcessing() {
         List<RegularPayment> payments = paymentService.findAll();
         LocalDateTime currentDateTime = LocalDateTime.now();

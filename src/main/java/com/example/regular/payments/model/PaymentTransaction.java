@@ -13,10 +13,10 @@ public class PaymentTransaction {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "regularPayment_id")
+    @JoinColumn(name = "regularPayment_id", nullable = false)
     private RegularPayment regularPayment;
 
-    @Column(name = "transaction_datetime")
+    @Column(name = "transaction_datetime", nullable = false)
     private LocalDateTime transactionDateTime;
 
     @Column(name = "payment_amount")
@@ -30,5 +30,3 @@ public class PaymentTransaction {
         REVERSED
     }
 }
-
-
