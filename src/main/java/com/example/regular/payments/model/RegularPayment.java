@@ -13,30 +13,30 @@ import org.hibernate.annotations.Where;
 public class RegularPayment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "surname")
+    @Column(name = "surname", nullable = false)
     private String surname;
 
-    @Column(name = "INN")
+    @Column(name = "INN", nullable = false)
     private String INN;
 
-    @Column(name = "card_number")
+    @Column(name = "card_number", nullable = false)
     private String cardNumber;
 
-    @Column(name = "recipient_account")
+    @Column(name = "recipient_account", nullable = false)
     private String recipientAccount;
 
-    @Column(name = "recipient_MFO")
+    @Column(name = "recipient_MFO", nullable = false)
     private String recipientMFO;
 
-    @Column(name = "recipient_OKPO")
+    @Column(name = "recipient_OKPO", nullable = false)
     private String recipientOKPO;
 
-    @Column(name = "recipient_name")
+    @Column(name = "recipient_name", nullable = false)
     private String recipientName;
 
     @Column(name = "payment_period")
@@ -45,6 +45,6 @@ public class RegularPayment {
     @Column(name = "payment_amount")
     private double paymentAmount;
 
-    @Column(name = "is_deleted")
+    @Column(name = "is_deleted", nullable = false)
     private boolean isDeleted = false;
 }

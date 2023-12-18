@@ -4,7 +4,6 @@ import com.example.regular.payments.dto.CreatePaymentRequestDto;
 import com.example.regular.payments.dto.PayerRequestDto;
 import com.example.regular.payments.dto.RecipientRequestDto;
 import com.example.regular.payments.dto.RegularPaymentDto;
-import com.example.regular.payments.model.PaymentTransaction;
 import com.example.regular.payments.model.RegularPayment;
 import java.util.List;
 import java.util.Optional;

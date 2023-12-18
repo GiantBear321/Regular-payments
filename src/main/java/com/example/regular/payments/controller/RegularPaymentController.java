@@ -24,13 +24,13 @@ public class RegularPaymentController {
         return paymentService.save(paymentRequestDto);
     }
 
-    @DeleteMapping("payer/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteById(@PathVariable Long id) {
+    @DeleteMapping("payers/{id}")
+    public ResponseEntity<Void> deleteById(@PathVariable Long id) {
         paymentService.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("payer/{id}")
+    @PutMapping("payers/{id}")
     public ResponseEntity<RegularPaymentDto> updateById(@PathVariable Long id,
                                                      @RequestBody @Valid CreatePaymentRequestDto payment) {
         Optional<RegularPayment> existingPayment = paymentService.findById(id);
@@ -41,17 +41,17 @@ public class RegularPaymentController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping("/payer")
+    @GetMapping("/payers")
     public List<RegularPaymentDto> findByPayer(@RequestBody @Valid PayerRequestDto payerRequestDto) {
         return paymentService.findByPayer(payerRequestDto);
     }
 
-    @GetMapping("/recipient")
+    @GetMapping("/recipients")
     public List<RegularPaymentDto> findByRecipient(@RequestBody RecipientRequestDto recipientRequestDto) {
         return paymentService.findByRecipient(recipientRequestDto);
     }
 
-    @GetMapping("/payer/{id}")
+    @GetMapping("/payers/{id}")
     public List<TransactionDto> findTransactionsByPayment(@PathVariable Long id) {
         return transactionService.findTransactionsDtoByPaymentId(id);
     }
