@@ -6,7 +6,6 @@ import com.example.regular.payments.dto.RecipientRequestDto;
 import com.example.regular.payments.dto.RegularPaymentDto;
 import com.example.regular.payments.model.RegularPayment;
 import java.util.List;
-import java.util.Optional;
 
 public interface RegularPaymentService {
     List<RegularPaymentDto> findByPayer(PayerRequestDto payerRequestDto);
@@ -19,7 +18,7 @@ public interface RegularPaymentService {
 
     RegularPaymentDto save(CreatePaymentRequestDto paymentRequestDto);
 
-    Optional<RegularPayment> findById(Long id);
+    RegularPayment findById(Long id);
 
     List<RegularPayment> findAll();
 }

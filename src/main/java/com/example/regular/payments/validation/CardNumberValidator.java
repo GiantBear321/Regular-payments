@@ -2,7 +2,6 @@ package com.example.regular.payments.validation;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
-
 import java.util.regex.Pattern;
 
 public class CardNumberValidator implements ConstraintValidator<CardNumber, String> {
