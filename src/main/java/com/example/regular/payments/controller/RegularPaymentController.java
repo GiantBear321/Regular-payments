@@ -1,7 +1,6 @@
 package com.example.regular.payments.controller;
 
 import com.example.regular.payments.dto.*;
-import com.example.regular.payments.model.RegularPayment;
 import com.example.regular.payments.service.PaymentTransactionService;
 import com.example.regular.payments.service.RegularPaymentService;
 import jakarta.validation.Valid;
@@ -10,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -33,12 +31,7 @@ public class RegularPaymentController {
     @PutMapping("payers/{id}")
     public ResponseEntity<RegularPaymentDto> updateById(@PathVariable Long id,
                                                      @RequestBody @Valid CreatePaymentRequestDto payment) {
-        Optional<RegularPayment> existingPayment = paymentService.findById(id);
-        if (existingPayment.isPresent()) {
-            RegularPaymentDto updatedPayment = paymentService.updateById(id, payment);
-            return new ResponseEntity<>(updatedPayment, HttpStatus.OK);
-        }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(paymentService.updateById(id, payment), HttpStatus.OK);
     }
 
     @GetMapping("/payers")

@@ -30,16 +30,16 @@ public class RegularPaymentMapperImpl implements RegularPaymentMapper {
     public RegularPayment toModel(CreatePaymentRequestDto requestDto) {
         RegularPayment regularPayment = new RegularPayment();
 
-        regularPayment.setName( requestDto.getName() );
-        regularPayment.setSurname( requestDto.getSurname() );
-        regularPayment.setINN( requestDto.getINN() );
-        regularPayment.setCardNumber( requestDto.getCardNumber() );
-        regularPayment.setRecipientAccount( requestDto.getRecipientAccount() );
-        regularPayment.setRecipientMFO( requestDto.getRecipientMFO() );
-        regularPayment.setRecipientOKPO( requestDto.getRecipientOKPO() );
-        regularPayment.setRecipientName( requestDto.getRecipientName() );
-        regularPayment.setPaymentPeriod( requestDto.getPaymentPeriod() );
-        regularPayment.setPaymentAmount( requestDto.getPaymentAmount() );
+        regularPayment.setName(requestDto.getName());
+        regularPayment.setSurname(requestDto.getSurname());
+        regularPayment.setINN(requestDto.getINN());
+        regularPayment.setCardNumber(requestDto.getCardNumber());
+        regularPayment.setRecipientAccount(requestDto.getRecipientAccount());
+        regularPayment.setRecipientMFO(requestDto.getRecipientMFO());
+        regularPayment.setRecipientOKPO(requestDto.getRecipientOKPO());
+        regularPayment.setRecipientName(requestDto.getRecipientName());
+        regularPayment.setPaymentPeriod(requestDto.getPaymentPeriod());
+        regularPayment.setPaymentAmount(requestDto.getPaymentAmount());
 
         return regularPayment;
     }
