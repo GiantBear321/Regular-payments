@@ -1,15 +1,15 @@
 package com.example.regular.payments.mapper;
 
 import com.example.regular.payments.dto.CreatePaymentRequestDto;
-import com.example.regular.payments.dto.RegularPaymentDto;
+import com.example.regular.payments.dto.RegularPaymentResponseDto;
 import com.example.regular.payments.model.RegularPayment;
 import org.springframework.stereotype.Component;
 
 @Component
 public class RegularPaymentMapperImpl implements RegularPaymentMapper {
     @Override
-    public RegularPaymentDto toDto(RegularPayment regularPayment) {
-        RegularPaymentDto regularPaymentDto = new RegularPaymentDto();
+    public RegularPaymentResponseDto toDto(RegularPayment regularPayment) {
+        RegularPaymentResponseDto regularPaymentDto = new RegularPaymentResponseDto();
 
         regularPaymentDto.setId(regularPayment.getId());
         regularPaymentDto.setName(regularPayment.getName());

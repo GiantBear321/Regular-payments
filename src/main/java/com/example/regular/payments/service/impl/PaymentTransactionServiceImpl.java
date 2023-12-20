@@ -1,6 +1,6 @@
 package com.example.regular.payments.service.impl;
 
-import com.example.regular.payments.dto.TransactionDto;
+import com.example.regular.payments.dto.TransactionResponseDto;
 import com.example.regular.payments.exception.EntityNotFoundException;
 import com.example.regular.payments.mapper.TransactionMapper;
 import com.example.regular.payments.model.PaymentTransaction;
@@ -9,6 +9,7 @@ import com.example.regular.payments.repository.PaymentTransactionRepository;
 import com.example.regular.payments.service.PaymentTransactionService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -20,8 +21,8 @@ public class PaymentTransactionServiceImpl implements PaymentTransactionService 
     private final TransactionMapper transactionMapper;
 
     @Override
-    public List<TransactionDto> findTransactionsDtoByPaymentId(Long id) {
-        List<PaymentTransaction> transactions = transactionRepository.findAllByRegularPaymentId(id);
+    public List<TransactionResponseDto> findTransactionsDtoByPaymentId(Long id, Pageable pageable) {
+        List<PaymentTransaction> transactions = transactionRepository.findAllByRegularPaymentId(id, pageable);
         return transactions.stream().map(transactionMapper::toDto).toList();
     }
 
@@ -46,6 +47,6 @@ public class PaymentTransactionServiceImpl implements PaymentTransactionService 
 
     @Override
     public List<PaymentTransaction> findTransactionsByPaymentId(Long id) {
-        return transactionRepository.findAllByRegularPaymentId(id);
+        return transactionRepository.findAllByRegularPaymentId(id, Pageable.unpaged());
     }
 }

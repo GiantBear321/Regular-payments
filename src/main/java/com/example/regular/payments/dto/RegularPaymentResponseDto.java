@@ -3,7 +3,7 @@ package com.example.regular.payments.dto;
 import lombok.Data;
 
 @Data
-public class RegularPaymentDto {
+public class RegularPaymentResponseDto {
     private Long id;
     private String name;
     private String surname;

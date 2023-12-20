@@ -4,8 +4,8 @@ import com.example.regular.payments.model.PaymentTransaction;
 import com.example.regular.payments.model.RegularPayment;
 import com.example.regular.payments.service.PaymentTransactionService;
 import com.example.regular.payments.service.RegularPaymentService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -16,7 +16,7 @@ public class PaymentProcessor {
     private final RegularPaymentService paymentService;
     private final PaymentTransactionService transactionService;
 
-    @Scheduled(fixedRate = 30000)
+    @Transactional
     public void startPaymentProcessing() {
         List<RegularPayment> payments = paymentService.findAll();
         LocalDateTime currentDateTime = LocalDateTime.now();

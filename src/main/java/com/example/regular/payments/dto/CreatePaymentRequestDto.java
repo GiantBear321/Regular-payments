@@ -15,11 +15,9 @@ public class CreatePaymentRequestDto {
     @NotBlank
     @Size(min = 10, max = 12, message = "INN должен содержать от 10 до 12 цифр")
     private String INN;
-
     @NotBlank
     @CardNumber
     private String cardNumber;
-
     @NotBlank
     private String recipientAccount;
     @NotBlank
