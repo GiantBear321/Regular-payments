@@ -3,7 +3,7 @@ package com.example.regular.payments.service.impl;
 import com.example.regular.payments.dto.CreatePaymentRequestDto;
 import com.example.regular.payments.dto.PayerRequestDto;
 import com.example.regular.payments.dto.RecipientRequestDto;
-import com.example.regular.payments.dto.RegularPaymentDto;
+import com.example.regular.payments.dto.RegularPaymentResponseDto;
 import com.example.regular.payments.exception.EntityNotFoundException;
 import com.example.regular.payments.mapper.RegularPaymentMapper;
 import com.example.regular.payments.model.RegularPayment;
@@ -24,7 +24,7 @@ public class RegularPaymentServiceImpl implements RegularPaymentService {
     private final RegularPaymentMapper paymentMapper;
 
     @Override
-    public List<RegularPaymentDto> findByPayer(PayerRequestDto payerRequestDto) {
+    public List<RegularPaymentResponseDto> findByPayer(PayerRequestDto payerRequestDto) {
         List<RegularPayment> payments = paymentRepository
                 .findRegularPaymentByNameAndSurname(payerRequestDto.getName(), payerRequestDto.getSurname());
         return payments.stream().map(paymentMapper::toDto).toList();
@@ -39,7 +39,7 @@ public class RegularPaymentServiceImpl implements RegularPaymentService {
 
     @Override
     @Transactional
-    public RegularPaymentDto updateById(Long id, CreatePaymentRequestDto paymentRequestDto) {
+    public RegularPaymentResponseDto updateById(Long id, CreatePaymentRequestDto paymentRequestDto) {
         findById(id);
         RegularPayment paymentModel = paymentMapper.toModel(paymentRequestDto);
         paymentModel.setId(id);
@@ -47,7 +47,7 @@ public class RegularPaymentServiceImpl implements RegularPaymentService {
     }
 
     @Override
-    public RegularPaymentDto save(CreatePaymentRequestDto paymentRequestDto) {
+    public RegularPaymentResponseDto save(CreatePaymentRequestDto paymentRequestDto) {
         RegularPayment savedRegularPayment = paymentRepository.save(paymentMapper.toModel(paymentRequestDto));
         paymentTransactionService.createPaymentTransaction(savedRegularPayment);
         return paymentMapper.toDto(savedRegularPayment);
@@ -60,7 +60,7 @@ public class RegularPaymentServiceImpl implements RegularPaymentService {
     }
 
     @Override
-    public List<RegularPaymentDto> findByRecipient(RecipientRequestDto recipientRequestDto) {
+    public List<RegularPaymentResponseDto> findByRecipient(RecipientRequestDto recipientRequestDto) {
         if (recipientRequestDto.getRecipientAccount() != null) {
             List<RegularPayment> payments = paymentRepository
                     .findByRecipientAccount(recipientRequestDto.getRecipientAccount());
